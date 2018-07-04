@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>state</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            //创建一个组件，组件有一个数据，记录的开关的状态，组件中有一个按钮，可以点击按钮，修改数据
+            var SwitchComponent = React.createClass({
+                //初始化状态
+                //状态本身就是一个对象
+                getInitialState:function(){
+                    return {switchValue:false}
+                },
+                handleClick:function(){
+                    //修改状态
+                    var nowState = this.state.switchValue;
+                    //状态的修改是一个异步操作,在setState方法的第二个参数这 是修改成功后的处理函数
+                    this.setState(
+                        {switchValue:!nowState},
+                        function(){
+                            console.log(this.state.switchValue);
+                        }
+                    );
+                },
+                render:function(){
+                    return <button onClick={this.handleClick} >{this.state.switchValue?'开':'关'}</button>
+                }
+            })
+            ReactDOM.render(
+                <SwitchComponent></SwitchComponent>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

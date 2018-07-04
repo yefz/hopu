@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>props传方法</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var MyButton = React.createClass({
+                handleClick:function(){
+                    console.log('btn is clicked');
+                    //和登录、注册相关的操作
+                    this.props.myClick();
+                },
+                render:function(){
+                    return <button onClick={this.handleClick} >{this.props.btnName}</button>
+                }
+            })
+
+            var MyLogin = React.createClass({
+                handleLogin:function(){
+                    alert('登录处理函数被调用了')
+                },
+                handleRegister:function(){
+                    alert('注册的按钮被点击了')
+                },
+                render:function(){
+                    return <div>
+                        <MyButton myClick={this.handleLogin} btnName="登录"></MyButton>
+                        <MyButton myClick={this.handleRegister} btnName="注册"></MyButton>
+                    </div>
+                }
+            })
+            ReactDOM.render(
+                <MyLogin></MyLogin>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

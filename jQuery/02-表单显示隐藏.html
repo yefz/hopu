@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3-2</title>
+<meta charset="utf-8"/>
+<script src="js/jquery-1.11.3.js"></script>
+<style>
+form{
+	margin: 20px auto;
+	padding: 20px;
+	width: 350px;
+	height: 400px;
+	font-family: "微软雅黑 Light","Microsoft YaHei";
+	border: .4rem solid transparent;
+	color: azure;
+	background: linear-gradient(#3C3F41,#3C3F41) padding-box,
+	repeating-linear-gradient(-45deg,
+			#4DBAAD 0,#4DBAAD 12.5%,
+			transparent 0,transparent 25%,
+			#3C3F41 0,#3C3F41 37.5%,
+			transparent 0,transparent 50%) 0 / 5em 5em;
+}
+#email,
+#issue {
+	display: none;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px dashed #FFF;
+}
+select,
+input{
+	border: 0;
+	outline: none;
+}
+select{
+	color: #FFF;
+	background: none;
+}
+option {
+	color: #EEE;
+	background: #14151C;
+}
+input{
+	color: #EEE;
+	border-bottom: 1px solid #FFF;
+	background: none;
+}
+span {
+	display: inline-block;
+	width: 100px;
+	margin: 15px auto;
+	text-align: right;
+}
+</style>
+</head>
+
+<body>
+<form>
+	<span>验证方式 ：</span>
+	<select name="check">
+		<option value="1" selected="selected">密保邮箱</option>
+		<option value="2">密保问题</option>
+	</select>
+	<div id="email">
+		<span>密保邮箱 ：</span>
+		<input type="text" value="">
+	</div>
+	<div id="issue">
+		<span>问题 1 ：</span>
+		<select>
+			<option value="0">选择密保问题</option>	
+			<option value="1">问题1</option>
+			<option value="2">问题2</option>
+		</select><br>
+		<span>答案 ：</span>
+		<input type="text" value=""><br>
+		<span>问题 2 ：</span>
+		<select>
+			<option value="0">选择密保问题</option>	
+			<option value="1">问题1</option>
+			<option value="2">问题2</option>
+		</select><br>
+		<span>答案 ：</span>
+		<input type="text" value=""><br>
+		<span>问题 3 ：</span>
+		<select>
+			<option value="0">选择密保问题</option>	
+			<option value="1">问题1</option>
+			<option value="2">问题2</option>
+		</select><br>
+		<span>答案 ：</span>
+		<input type="text" value="">
+	</div>
+</form>
+<script>
+	$().ready(function(){
+		$("#email").show();
+
+		$("select[name=check]").change(function(){
+			if($("select[name=check] option:checked").val()=="1"){
+				$("#email").show();
+				$("#issue").hide();
+			}else{
+				$("#email").hide();
+				$("#issue").show();
+			}
+		});
+	});
+</script>
+</body>
+</html>

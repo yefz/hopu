@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>swiper 全屏切换</title>
+	<link rel="stylesheet" href="../static/css/swiper.min.css">
+	<style>
+		body, html {
+		    min-width: 320px;
+		    max-width: 750px;
+		    height: 100%;
+		}
+		header {
+		    width: 100%;
+		    height: 25rem;
+		    background: url("../static/image/bg_01.jpg") no-repeat;
+		    background-size: 100% 100%;
+		}
+		header .swiper-container {
+		    width: 95%;
+		    padding-top: 0.5rem;
+		}
+		header .swiper-slide {
+		    background-position: center;
+		    background-size: 130% 120%;
+		    width: 60%;
+		    height: 15rem;
+		}
+		header .swiper-slide img {
+		    display: block;
+		    width: 100%;
+		    height: 15rem;
+		}
+		header .swiper-button-next, .swiper-button-prev {
+		    top: 5rem;
+		    width: 10%;
+		    height: 7rem;
+		}
+		header .swiper-button-next {
+		    background: url("images/right.png") no-repeat 100% 2.5rem;
+		}
+		header .swiper-button-prev {
+		    background: url("images/left.png") no-repeat 0 2.5rem;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="index">
+	    <!-- 轮播 -->
+	    <header>
+	        <div class="swiper-container">
+	            <div class="swiper-wrapper">
+	                <div class="swiper-slide">
+	                    <img src="../static/image/one_item_01.jpg">
+	                    <span></span>
+	                </div>
+	                <div class="swiper-slide">
+	                    <img src="../static/image/one_item_02.jpg">
+	                    <span></span>
+	                </div>
+	                <div class="swiper-slide">
+	                    <img src="../static/image/one_item_03.jpg">
+	                    <span></span>
+	                </div>
+	                <div class="swiper-slide">
+	                    <img src="../static/image/one_item_04.jpg">
+	                    <span></span>
+	                </div>
+	                <div class="swiper-slide">
+	                    <img src="../static/image/one_item_05.jpg">
+	                    <span></span>
+	                </div>
+	            </div>
+	            <div class="swiper-button-next"></div>
+	            <div class="swiper-button-prev"></div>
+	        </div>
+	    </header>
+	</div>
+
+
+	<script src="../static/js/jquery-1.11.3.min.js"></script>
+	<script src="../static/js/swiper.jquery.min.js"></script>
+	<script>
+		// 轮播
+		var swiper = new Swiper('.swiper-container', {
+		    loop : true,
+		    pagination: '.swiper-pagination',
+		    effect: 'coverflow',
+		    grabCursor: true,
+		    centeredSlides: true,
+		    nextButton: '.swiper-button-next',
+		    prevButton: '.swiper-button-prev',
+		    slidesPerView: 'auto',
+		    coverflow: {
+		        rotate: 0,// 旋转的角度
+		        stretch: 100,// 拉伸   图片间左右的间距和密集度
+		        depth: 150,// 深度   切换图片间上下的间距和密集度
+		        modifier: 3,// 修正值 该值越大前面的效果越明显
+		        slideShadows : false// 页面阴影效果
+		    }
+		});
+	</script>
+</body>
+</html>

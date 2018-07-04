@@ -1,0 +1,118 @@
+body {
+  font-family: "微软雅黑","Microsoft YaHei";
+  font-size: 17px;
+  font-weight: 300;
+  padding: 30px;
+}
+*{
+  /*border: 1px dashed blue;*/
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.view {
+  width: 600px;
+  height: 35px;
+}
+.view ul {
+  position: relative;
+  display: inline-block;
+  width:400px;
+  height:35px;
+  border: 1px solid #3E91E1;
+}
+.view ul:first-child:before {
+  content: "";
+  padding-left: .7rem;
+}
+.view ul li {
+  display: inline-block;
+  line-height: 35px;
+}
+.view ul li:not(:first-child):before {
+  content: "/ ";
+}
+.view button {
+  display: inline-block;
+  padding: 0 1.2rem;
+  line-height: 35px;
+  border: 0;
+}
+.view button:hover {
+  color: #FFF;
+}
+.view button[type="reset"] {
+  background: #F0AD4E;
+}
+.view button[type="submit"] {
+  background: #D9534F;
+}
+.view ul span {
+  position: absolute;
+  right: .5rem;
+  line-height: 35px;
+  width: 0;
+  height: 0;
+  margin-top: .4rem;
+  overflow: hidden;
+  border-width: .6rem;
+  border-style: dashed solid dashed dashed;
+  border-color: transparent black transparent transparent;
+  transition: all 0.5s ease 0s;
+}
+.view ul span.on{
+  right: .2rem;
+  margin-top: .7rem;
+  transform:rotate(-90deg);
+  -ms-transform:rotate(-90deg); 	/* IE 9 */
+  -moz-transform:rotate(-90deg); 	/* Firefox */
+  -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+  -o-transform:rotate(-90deg);
+}
+.box {
+  width: 400px;
+  background: #FFF;
+  border: 1px solid;
+  border-color: #3E91E1 #CCC #CCC;
+  box-shadow: 0 5px 15px -5px black;
+  /*display: none;*/
+}
+.box ul {
+  font-size: .9rem;
+  background: #F0F0F0;
+  overflow: hidden;
+}
+.box ul li {
+  line-height: 38px;
+  border-bottom: 1px solid #CCC;
+}
+.box ul li:last-child {
+  margin-left: 161px;
+  text-align: left;
+  padding-left: 1.5rem;
+}
+.box ul li:not(:last-child){
+  float: left;
+  width: 80px;
+  text-align: center;
+  border-right: 1px solid #CCC;
+}
+.box li.on{
+  background: #FFF;
+  border-bottom: 1px solid #FFF!important;
+}
+.box > div {
+  display: none;
+}
+.box > div > span {
+  display: inline-block;
+  margin: .3rem .2rem;
+  padding: .3rem .7rem;
+  cursor: pointer;
+}
+.box > div > span:hover {
+  color: #FFF;
+  background: #99CC00;
+}

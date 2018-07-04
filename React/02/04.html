@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>lifecycle练习</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var LifeCycleCom = React.createClass({
+                getInitialState:function(){
+                    return {opacityValue:0}
+                },
+                componentDidMount:function(){
+                    setInterval(function(){
+                        //修改状态中的值
+                        var nowValue = this.state.opacityValue+=0.1;
+                        if(nowValue > 1){
+                            nowValue = 0;
+                        }
+                        this.setState({
+                            opacityValue:nowValue
+                        },function(){
+                            console.log(this.state);
+                        });
+                    }.bind(this),500)
+                },
+                render:function(){
+                    return  <div style={{opacity:this.state.opacityValue}}>it is a test</div>
+                }
+            })
+
+            ReactDOM.render(
+                <LifeCycleCom></LifeCycleCom>,
+                document.getElementById('example')
+            )
+    </script>
+</body>
+</html>

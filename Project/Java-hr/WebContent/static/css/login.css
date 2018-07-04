@@ -1,0 +1,142 @@
+@charset "UTF-8";
+html {
+  font-size: 12px;
+}
+html,body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: 'Microsoft Yahei', serif;
+  background: #F3F3F3;
+}
+form {
+  display: block;
+  margin: 15% auto 0;
+  padding: 1rem;
+  width: 500px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: -4px 7px 20px -10px black;
+}
+form > h2 {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+}
+form {
+  position: relative;
+}
+form > a {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #4DBAAD;
+}
+form > a > span {
+  opacity: 0;
+  transition: all .5s ease 0s;
+}
+form > a:hover {
+  color: #4DBAAD;
+  text-decoration: none;
+}
+form > a:hover > span {
+  opacity: 1;
+}
+form > div > a,
+form > div > a:active {
+  padding: 0 .3rem;
+  text-decoration: none;
+  color: #14151C;
+}
+form > div > a:hover {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #4DBAAD;
+}
+input,
+input:hover,
+input:focus {
+  outline: 0;
+  box-shadow: none;
+  background: none!important;
+}
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset;
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+  -webkit-text-fill-color: #333;
+}
+input:not(#remember) {
+  padding-left: .9rem;
+  width: 100%;
+  height: 4rem;
+  font-size: 1.2rem;
+  color: #14151C;
+  outline:none;
+  border-width: 0 0 3px 0;
+  border-color: #D5D5D5;
+  animation: rotate 2.0s infinite linear;
+  -webkit-animation: rotate 2.0s infinite linear;
+  transition: all .7s ease 0s;
+}
+input:not(#remember):focus {
+  border-color: #4DBAAD;
+}
+button[type="submit"] {
+  padding: 12px 0;
+  width: 100%;
+  color: #000;
+  background: #4DBAAD;
+  border-width: 1px;
+  border-color: #4DBAAD;
+  outline:none;
+}
+button[type="submit"]:hover {
+  color: #FFF;
+}
+#slider {
+  position: relative;
+  width: 99.7%;
+  height: 35px;
+  line-height: 35px;
+  overflow: hidden;
+  background-color: #E8E8E8;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+#slider_bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  background-color: #82C13D;
+}
+#label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 40PX;
+  height: inherit;
+  line-height: inherit;
+  text-align: center;
+  color: #CCC;
+  background: #FFF;
+  border: 1px solid #CCC;
+  cursor: move;
+}
+#labelTip {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  color: #787878;
+  line-height: inherit;
+  text-align: center;
+}
+h2{
+  text-align: center;
+}

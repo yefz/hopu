@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3-3</title>
+<meta charset="utf-8"/>
+<script src="js/jquery-1.11.3.js"></script>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		/*border: 1px dashed blue;*/
+	}
+	body{
+		font-size: 17px;
+		background: #F4F4F4;
+	}
+	a{
+		display: inline-block;
+		margin: 0 20px;
+		line-height: 50px;
+		text-decoration: none;
+		color: #FFF;
+	}
+	li:hover{
+		background: #4DBAAD;
+	}
+	ul{
+	  border-bottom: .4rem solid transparent;
+	  background: linear-gradient(#3C3F41,#3C3F41) padding-box,
+	              repeating-linear-gradient(-45deg,
+	              #4DBAAD 0,#4DBAAD 12.5%,
+	              transparent 0,transparent 25%,
+	              #3C3F41 0,#3C3F41 37.5%,
+	              transparent 0,transparent 50%) 0 / 5em 5em;
+	}
+	ul.list{
+		display: block;
+		margin: 2rem auto;
+		width: 500px;
+		height: 50px;
+	}
+	ul.list > li{
+		float: left;
+	}
+	ul.list ul{
+		display: none;
+	}
+	i{
+		display: inline-block;
+		margin-left: .5rem;
+		height: 0;
+		font-size: 0;
+		line-height: 50px;
+		border-style: solid;
+		border-width: 7px 0px 7px 7px;
+		border-color: transparent #f3f3f3;
+  	transition: all 0.5s ease 0s;
+	}
+	li:hover i{
+		transform:rotate(90deg);
+		-ms-transform:rotate(90deg); 	/* IE 9 */
+		-moz-transform:rotate(90deg); 	/* Firefox */
+		-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+		-o-transform:rotate(90deg);
+	}
+
+</style>
+</head>
+
+<body>
+<ul class="list">
+	<li>
+		<a href="#">HTML<i></i></a>
+		<ul>
+			<li><a href="#">A1</a></li>
+			<li><a href="#">A2</a></li>
+			<li><a href="#">A3</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#">CSS</a>
+	</li>
+	<li>
+		<a href="#">JavaScript<i></i></a>
+		<ul>
+			<li><a href="#">D1</a></li>
+			<li><a href="#">D2</a></li>
+			<li><a href="#">D3</a></li>
+		</ul></li>
+	<li>
+		<a href="#">jQuery</a>
+	</li>
+</ul>
+<script>
+  $().ready(function(){
+
+    //获取省份
+    var allCity = city.citylist;
+
+    //输出所有省份
+    $.each(allCity,function(i,n){
+      $(".box div:first").append('<span>'+n.p+'</span>')
+    });
+
+    //检测文本变更
+    $(".view ul li").bind("DOMNodeInserted",function(){
+      console.log($(this).index());
+    });
+
+    //弹出下框
+    $(".view ul").click(function(){
+      $(".box").slideToggle().children("div:first").show();
+      $(this).children("span").toggleClass("on");
+    });
+
+    //tab标签高亮
+    $(".box ul li").click(function(){
+      course($(this).index());
+      console.log($(this).index());
+    });
+
+    //选择
+    $(".box span").bind("click",function(){
+      var index = $(this).closest("div").index();
+      $(".view ul li").eq(index-1).text($(this).text());
+    });
+
+    function course(index) {
+      index = index || 0;
+      $(".box ul li").removeClass("on").eq(index).addClass("on");
+      $(".box div").hide().eq(index).show();
+    }
+
+    function toData(lev){
+
+      // var Sh = new Array("北京","天津","上海","重庆","香港","澳门","台湾","国外");
+      // $.inArray(textP,Sh)
+
+      switch(lev){
+
+        case 0:
+          $(".box div:gt(0)").empty();
+          $.each(allCity,function(i,n){
+            if(textP==n.p){
+              $.each(n.c,function(a,b){
+                //添加每一个市
+                $(".box div:eq(1)").append('<span>'+b.n+'</span>')
+              });
+            }
+          });
+          $(".view li:eq(1)").text($(".box div:eq(1)").children("span:first").text());
+          course(1);
+          console.log("shi");
+          break;
+
+        case 1:
+          $(".box div:gt(1)").empty();
+          $.each(allCity,function(i,n){
+            if(textP==n.p){
+              $.each(n.c,function(a,b){
+                if(textC==b.n){
+                  $.each(b.a,function(c,d){
+                    //添加每一个区
+                    $(".box div:eq(2)").append('<span>'+d.s+'</span>')
+                  })
+                }
+              });
+            }
+          });
+          $(".view li:eq(2)").text($(".box div:eq(2)").children("span:first").text());
+          course(2);
+          console.log("qu");
+          break;
+
+        default:
+
+          break;
+      }
+
+    }
+
+    toData(0);
+
+  });
+</script>
+</body>
+</html>

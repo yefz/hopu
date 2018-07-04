@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>todulist</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var ToDoInput = React.createClass({
+                handleClick:function(){
+                    //修改状态
+                    this.props.myAdd(this.refs.myInput.value);
+                },
+                render:function(){
+                    return <div>
+                        <h2>待做事项列表</h2>
+                        <input type="text" ref='myInput'/>
+                        <button onClick={this.handleClick}>add</button>
+                    </div>
+                }
+            })
+            var ToDoList = React.createClass({
+                render:function(){
+                    return <ul>
+                            {
+                                this.props.list.map(function(value,index){
+                                    return <ToDoItem myValue={value} key={index}></ToDoItem>
+                                })
+                            }
+                        </ul>
+                    }
+                })
+
+                var ToDoItem = React.createClass({
+                    render:function(){
+                        return <li>
+                            <button>删除</button>
+                            <span>{this.props.myValue}</span>
+                        </li>
+                }
+            })
+
+            var ToDoBox = React.createClass({
+                getInitialState:function(){
+                    return {myList:[]}
+                },
+
+                addToList:function(content){
+                    //将参数添加到状态中的数组
+                    var nowList = this.state.myList;
+                    nowList.push(content);
+                    this.setState({
+                        myList:nowList
+                    },function(){
+                        console.log(this.state.myList);
+                    });
+                },
+                render:function(){
+                    return <div>
+                        <ToDoInput myAdd={this.addToList}></ToDoInput>
+                        <ToDoList list={this.state.myList}></ToDoList>
+                    </div>
+                }
+            })
+            ReactDOM.render(
+                <ToDoBox></ToDoBox>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

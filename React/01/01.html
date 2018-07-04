@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            //jsx语法，浏览器并不能直接识别
+            ReactDOM.render(
+                <h1> it is our first app </h1>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

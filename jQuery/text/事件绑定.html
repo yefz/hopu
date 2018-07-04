@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>事件绑定</title>
+<meta charset="utf-8"/>
+<script src="js/jquery-1.11.3.js"></script>
+<style>
+  div{
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: blue;
+  }
+</style>
+</head>
+
+<body>
+  <button id="btn">button</button>
+  <div id="div"></div>
+<script>
+$().ready(function(){
+	$("#btn").bind("mouseout mouseover",function(){
+    $("#div").toggle(1000);
+  });
+});
+</script>
+</body>
+</html>

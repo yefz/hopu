@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>on和bind绑定的区别</title>
+		<script src="jquery-1.11.3.js"></script>
+		<style type="text/css">
+			ul{
+				width: 200px;
+				height: 200px;
+				margin: 30px;
+				background-color: #f00;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>北京</li>
+			<li>上海</li>
+			<li>深圳</li>
+		</ul>
+		<script type="text/javascript">
+//			当鼠标点击到某个节点上面,控制台输出对应节点的文本
+			$().ready(function(){
+//				$("ul li").on("click",function(){
+////					console.log(this.innerText);
+//					console.log($(this).text());    //分清楚DOM对象和jq对象
+//				})
+//				
+//				$("ul").append("<li>广州</li>");
+//				$("ul li:last").bind("click",function(){
+//					console.log($(this).text());
+//				})
+
+//				往往一些实际情况都是写在后面
+				
+//				on  可以做事件的委托
+//				事件委托:就是自己要做的事情不做了,委托给父元素来完成
+				$("ul").on("click","li",function(){
+					console.log($(this).text()); 
+				})
+				$("ul").append("<li>广州</li>");
+				
+//				bind不能为动态元素绑上指定事件,on可以利用事件委托给动态元素绑定
+//				提高性能
+//				如果子元素非常多,每个上面都绑上事件,严重影响性能
+//				用on委托始终只绑定一次
+				
+				
+			})
+			
+			
+			
+			
+			
+			
+			
+		
+		</script>
+	</body>
+</html>

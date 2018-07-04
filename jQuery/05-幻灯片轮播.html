@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3-5</title>
+<meta charset="utf-8"/>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html{
+  font-size: 12px;
+}
+.banner{
+  position: relative;
+  margin: 2rem auto;
+  width: 800px;
+  height: 280px;
+  overflow: hidden;
+  border: .4rem solid transparent;
+  background: linear-gradient(#3C3F41,#3C3F41) padding-box,
+              repeating-linear-gradient(-45deg,
+              #4DBAAD 0,#4DBAAD 12.5%,
+              transparent 0,transparent 25%,
+              #3C3F41 0,#3C3F41 37.5%,
+              transparent 0,transparent 50%) 0 / 5em 5em;
+}
+.banner .box{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4800px;
+  height: inherit;
+}
+.banner .box img{
+  float: left;
+}
+.banner .intro{
+  position: absolute;
+  bottom: .3rem;
+  width: 100%;
+  text-align: center;
+}
+.intro span{
+  display: inline-block;
+  margin: 0 .5rem;
+  padding: .7rem;
+  border-radius: 50%;
+  background: rgba(0,0,0,.5);
+  cursor: pointer;
+}
+.intro span.on{
+  background: #4DBAAD;
+}
+.btn{
+  position: absolute;
+  top:50%;
+  margin-top: -3.5rem;
+  padding: 1.2rem .5rem;
+  font-family: "宋体";
+  font-size: 4rem;
+  text-align: center;
+  color: azure;
+  background: rgba(0,0,0,.5);
+  cursor: pointer;
+  transition: all 0.5s ease 0s;
+  opacity: 0;
+}
+.banner:hover .btn{
+  opacity: 1;
+}
+.btn.L{
+  left: 0;
+}
+.btn.R{
+  right: 0;
+}
+</style>
+</head>
+
+<body>
+  <div class="banner">
+    <ul class="box">
+      <li><a href="#"><img src="img/01.jpg"></a></li>
+      <li><a href="#"><img src="img/02.jpg"></a></li>
+      <li><a href="#"><img src="img/03.jpg"></a></li>
+      <li><a href="#"><img src="img/04.jpg"></a></li>
+      <li><a href="#"><img src="img/05.jpg"></a></li>
+    </ul>
+    <div class="intro"></div>
+    <div class="btn L">&lt;</div>
+    <div class="btn R">&gt;</div>
+  </div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+$().ready(function(){
+
+  //偏移量
+  var mob = 0;
+
+  //追加首元素至末尾.用以css无缝切换
+  $(".box li:first").clone().appendTo(".box");
+
+  var size = $(".banner li img").size();
+
+  //生成滑动标识元素span
+  for(i=0;i<size-1;i++){
+    $(".banner .intro").append("<span></span>");
+  }
+  //载入默认高亮标识
+  $(".banner .intro span:first").addClass("on");
+
+  //鼠标滑入标识元素span
+  $(".banner .intro span").hover(function(){
+    $(".banner .box").stop().animate({left:-$(this).index()*800},500);
+    $(this).addClass("on").siblings().removeClass("on");
+  });
+
+  //自动轮播
+  var t = setInterval(function(){
+    mob++;
+    play();
+  },2000);
+
+  //对移入banner定时器操作
+  $(".banner").hover(function(){
+    clearInterval(t);
+  },function(){
+    t = setInterval(function(){
+      mob++;
+      play();
+    },2000);
+  });
+
+  //左切换按钮
+  $(".btn.L").click(function(){
+    mob--;
+    play();
+  });
+
+  //右切换按钮
+  $(".btn.R").click(function(){
+    mob++;
+    play();
+  });
+
+  function play(){
+
+    // 左切换无缝切换 L
+    if(mob==size){
+      $(".banner .box").css({left:0});
+      mob=1;
+    }
+
+    // 右切换无缝切换 R
+    if(mob==-1){
+      $(".banner .box").css({left:-(size-1)*800});
+      mob=size-2;
+    }
+
+    // 偏移切换动画
+    $(".banner .box").stop().animate({left:-mob*800},500);
+
+    // 左末切换 高亮标识切换 L
+    if(mob==size-1){
+      $(".banner .intro span").eq(0).addClass("on").siblings().removeClass("on");
+    }else{
+      $(".banner .intro span").eq(mob).addClass("on").siblings().removeClass("on");
+    }
+
+  }
+
+});
+</script>
+</body>
+</html>

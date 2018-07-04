@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/01.js"></script>
+</head>
+<body>
+	<h1>今天天气真好 今天是星期<%= day %></h1>
+	<ul>
+		<%
+			for(var i = 0;i < news.length;i++){
+				if(news[i].count > 20){
+		%>
+			<li><%= news[i].title %></li>
+		<%
+				}
+			}
+		%>
+	</ul>
+	
+</body>
+</html>
+
+<!-- jade -->

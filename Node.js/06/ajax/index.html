@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./jquery-1.11.3.js"></script>
+</head>
+<body>
+	<h1>这个是主界面</h1>
+	<button id="btn1">发送一个POST</button>
+	<button id="btn2">发送一个GET</button>
+
+	<script>
+		$('#btn1').on('click',function(){
+			$.ajax({
+				'url' : '/getData',
+				'type' : 'POST',
+				'dataType' : 'json',
+				'data' : {'name' : 'jack', 'sex' : '1' },
+				'success' : function(data){
+					console.log(data);
+					console.log(data.message)
+				}
+			})
+		})
+		$('#btn2').on('click',function(){
+			$.ajax({
+				'url' : '/getData',
+				'type' : 'GET',
+				'dataType' : 'json',
+				'data' : {'getname' : 'jack', 'getsex' : '1' },
+				'success' : function(data){
+					console.log(data);
+					console.log(data.message)
+				}
+			})
+		})
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<select name="" id="sheng"></select>
+	<select name="" id="shi"></select>
+	<select name="" id="qu"></select>
+	<script>
+		var sheng = document.getElementById("sheng");
+		var shi = document.getElementById("shi");
+		var qu = document.getElementById("qu");
+
+
+		// ajax请求数据
+		function ajax(url,fnSuc,fnErr){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET",url,true);
+			xhr.send();
+			xhr.onload = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					fnSuc(xhr.responseText);
+				}
+			}
+		}
+		var p1 = new Promise(function(resolve,reject){
+			ajax('area-json.json',function(data){
+				resolve(data);
+			},function(){
+
+			})
+		});
+		p1.then(function(value){    //这个数据是json字符串
+			var data = JSON.parse(value);    //转成json对象
+			for(var i = 0;i<data.length;i++){
+				var opt = document.createElement("option");
+				opt.innerHTML = data[i].name;
+				sheng.appendChild(opt);
+			}
+			sheng.onchange = function(){
+				shi.innerHTML = "";
+				var shiall = data[sheng.selectedIndex].children;
+				// console.log(shiall);
+				for(var i = 0;i<shiall.length;i++){
+					var opt = document.createElement("option");
+					opt.innerHTML = shiall[i].name;
+					shi.appendChild(opt);
+				}
+			}
+			shi.onchange = function(){
+				qu.innerHTML = "";
+				var quall = data[sheng.selectedIndex].children[shi.selectedIndex].children;
+				for(var i = 0;i<quall.length;i++){
+					var opt = document.createElement("option");
+					opt.innerHTML = quall[i].name;
+					qu.appendChild(opt);
+				}
+			}
+		})
+	</script>
+
+</body>
+</html>

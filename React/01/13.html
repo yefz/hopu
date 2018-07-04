@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var AComponent = React.createClass({
+                handleChange:function(){
+                    //第一步：拿到用户所输入的数据
+                    var nowValue = this.refs.myInput.value;
+                    console.log(nowValue);
+                    //第二步：将输入的数据 存储在Main组件中
+                    this.props.mySave(nowValue);
+                },
+                render:function(){
+                    return <input ref='myInput' onChange={this.handleChange} type="text"/>
+                }
+            })
+
+            var BComponent = React.createClass({
+                render:function(){
+                    return <button>clickMe</button>
+                }
+            })
+
+            var MainComponent = React.createClass({
+                result:'',
+                save:function(value){
+                    console.log('MainComponent save func is called '+value);
+                    this.result = value;
+                },  
+                render:function(){
+                    return <div>
+                        <AComponent mySave={this.save}></AComponent>
+                        <BComponent></BComponent>
+                    </div>
+                }
+            })
+
+            ReactDOM.render(
+                <MainComponent></MainComponent>,
+                document.getElementById('example')
+            )
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>demo06_受控表单练习</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var MyForm = React.createClass({
+                getInitialState:function(){
+                    return {
+                        myName:'',
+                        mySex:1,
+                        myAgree:false
+                    }
+                },
+                handleSubmit:function(event){
+                    //拿到用户所输入的信息
+                    event.preventDefault();
+                    //由于用户输入的信息都保存在状态中
+                    console.log(this.state);
+                },
+                handleChangeName:function(){
+                    //拿到用户所输入的值
+                    var nowName = this.refs.uName.value;
+                    //修改状态
+                    this.setState({myName:nowName});
+                },
+                handleChangeSex:function(event){
+                    this.setState({mySex:event.target.value})
+                },
+                handleChangeAgree:function(event){
+                    this.setState({
+                        myAgree:event.target.checked
+                    })
+                },
+                render:function(){
+                    return <form onSubmit={this.handleSubmit} >
+                        <label htmlFor="u_name">请输入用户名</label>
+                        <input type="text" ref='uName' onChange={this.handleChangeName} id='u_name' value={this.state.myName}/>
+                        <br/>
+                        <label htmlFor="u_sex">选择性别</label>
+                        <select id="u_sex" onChange={this.handleChangeSex} value={this.state.mySex}>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                        <br/>
+                        <label htmlFor="u_agree">是否同意</label>
+                        <input type="checkbox" onChange={this.handleChangeAgree} checked={this.state.myAgree}/>
+                        <br/>
+                        <button>注册</button>
+                    </form>
+                },
+            })
+            ReactDOM.render(
+                <MyForm></MyForm>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

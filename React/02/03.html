@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>lifecycle</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var TestComponent = React.createClass({
+                getInitialState:function(){
+                    return {myResult:''}
+                },
+
+                componentWillMount:function(){
+                    console.log(this.refs.myInput);
+                    console.log('组件准备挂载');
+                },
+
+                componentDidMount:function(){
+                    console.log(this.refs.myInput);
+                    console.log('组件已经挂载成功');
+                },
+
+                //当组件有数据变化时会调用update相关的处理函数
+                componentWillUpdate:function(nextProps,nextState){
+                    console.log(nextState);
+                    //一般在处理函数中，拿到要更新的数据做一些业务上的逻辑判断和处理
+                },
+
+                componentDidUpdate:function(prevProps,prevState){
+                    console.log(prevState);
+                },
+
+                handleChange:function(){
+                    //修改状态
+                    this.setState({myResult:this.refs.myInput.value});
+                },
+
+                render:function(){
+                    return <div>
+                        <input type="text" onChange={this.handleChange} ref='myInput'/>
+                        <h1>{"当前的输入为"+this.state.myResult}</h1>
+                    </div>
+                }
+            })
+            
+            ReactDOM.render(
+                <TestComponent></TestComponent>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

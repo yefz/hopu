@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ready的性能</title>
+		<script src="jquery-1.11.3.js"></script>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+//			window.onload   等待所有的DOM加载完成(包括图片)执行里面的代码
+//			$().ready()     等待所有的DOM加载完成,不包括图片 
+			
+//			记录开始的时间
+			var startTime = new Date().getTime();
+//			console.log(startTime);
+//			结束的时间-开始的时间(ms) = 一共花费多少时间
+			window.onload = function(){
+				var endTime1 = new Date().getTime();
+				console.log("onload:" + (endTime1 - startTime) + "ms");
+			}
+			$().ready(function(){
+				var endTime2 = new Date().getTime();
+				console.log("ready:" + (endTime2 - startTime) + "ms");
+			})
+		</script>
+	</body>
+</html>

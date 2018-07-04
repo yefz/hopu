@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example">
+        </div>
+        <script type="text/babel">
+        //jsx 组件的创建和使用 复合组件 props ref
+        //Main组件  和 A组件 是父子关系
+        //父-》子 Main组件想要给A组件传值：可以直接通过属性传值
+        //子-》父 A组件想要给Main组件传值：在main组件中定义一个带有参数的方法，将该方法传递给A组件，A组件在调用该方法时将数据作为方法的参数传递给Main组件
+        var AComponent = React.createClass({
+        handleChange:function(){
+        //拿到用户输入的内容
+        var nowValue = this.refs.myInput.value;
+        //希望将用户输入的内容 保存到Main组件
+        this.props.mySave(nowValue);
+        },
+        render:function(){
+        return <input
+        ref='myInput'
+        onChange={this.handleChange} type="text"/>
+        }
+        })
+        var BComponent = React.createClass({
+        handleClick:function(){
+        //读取Main组件result
+        console.log("B组件取到的A组件中用户输入的值为："+this.props.myGet());
+        },
+        render:function(){
+        return <button
+        onClick={this.handleClick}>
+        clickMe
+        </button>
+        }
+        })
+        var MainComponent = React.createClass({
+        result:'',
+        save:function(value){
+        console.log('Main组件接收到的参数为:'+value);
+        this.result = value;
+        },
+        get:function(){
+        return this.result;
+        },
+        render:function(){
+        return <div>
+            <AComponent
+            mySave={this.save}></AComponent>
+            <BComponent
+            myGet={this.get}></BComponent>
+        </div>
+        }
+        })
+        ReactDOM.render(
+    <MainComponent></MainComponent>,
+    document.getElementById('example')
+    );
+    </script>
+</body>
+</html>

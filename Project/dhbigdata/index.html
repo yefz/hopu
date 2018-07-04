@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>东湖大数据-领先的大数据资产运营商</title>
+	<!--[if lte IE 8]>
+		<script src="static/js/html5.dc.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="static/css/swiper.min.css">
+	<link rel="stylesheet" href="static/css/master.css">
+</head>
+<body>
+	<!-- 站点导航 -->
+	<nav class="nav-site">
+		<div class="container">
+
+			<div class="fl">
+				<!-- logo -->
+				<a href="#" class="nav-site-logo">
+					<img src="static/image/logo.png" alt="">
+				</a>
+			</div>
+
+			<!-- right menu -->
+			<ul class="fr">
+				<li class="fl"><a href="#" class="link active">首页</a></li>
+				<li class="menu dropdown fl" data-active="menu">
+					<a href="#" target="_blank" class="dropdown-toggle link">旗下产品</a>
+					<ul class="dropdown-layer">
+						<li><a href="#" target="_blank" class="dropdown-item">大数据资产归集与交易</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">大数据资产可视化搜索</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">大数据资产评估与定价</a></li>
+					</ul>
+				</li>
+				<li class="menu dropdown fl" data-active="menu">
+					<a href="#" target="_blank" class="dropdown-toggle link">解决方案</a>
+					<ul class="dropdown-layer">
+						<li><a href="#" target="_blank" class="dropdown-item">科技</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">社团</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">文创</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">传媒</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">商业</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">招商</a></li>
+					</ul>
+				</li>
+				<li class="menu dropdown fl" data-active="menu">
+					<a href="#" target="_blank" class="dropdown-toggle link">新闻中心</a>
+					<ul class="dropdown-layer">
+						<li><a href="#" target="_blank" class="dropdown-item">领导关注</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">媒体关注</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">公司动态</a></li>
+					</ul>
+				</li>
+				<li class="menu dropdown fl" data-active="menu">
+					<a href="#" target="_blank" class="dropdown-toggle link">关于东湖</a>
+					<ul class="dropdown-layer">
+						<li><a href="#" target="_blank" class="dropdown-item">公司简介</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">公司股东</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">企业文化</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">招贤纳士</a></li>
+						<li><a href="#" target="_blank" class="dropdown-item">专利认证</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- 分屏 -->
+	<div class="swiper-full">
+
+		<div class="swiper-wrapper">
+
+			<div class="swiper-slide one">
+				<section class="content">
+
+					<div class="swiper-rotate">
+						<div class="swiper-wrapper">
+			                <div class="swiper-slide">
+			                    <img src="static/image/one_item_01.jpg">
+			                    <span></span>
+			                </div>
+			                <div class="swiper-slide">
+			                    <img src="static/image/one_item_02.jpg">
+			                    <span></span>
+			                </div>
+			                <div class="swiper-slide">
+			                    <img src="static/image/one_item_03.jpg">
+			                    <span></span>
+			                </div>
+			                <div class="swiper-slide">
+			                    <img src="static/image/one_item_04.jpg">
+			                    <span></span>
+			                </div>
+			                <div class="swiper-slide">
+			                    <img src="static/image/one_item_05.jpg">
+			                    <span></span>
+			                </div>
+						</div>
+					</div>
+
+				</section>
+				<div class="full" id="particle1"></div>
+			</div>
+
+			<div class="swiper-slide two" id="particle2"></div>
+
+			<div class="swiper-slide three">Slide 3</div>
+
+			<div class="swiper-slide four">Slide 4</div>
+
+		</div>
+
+		<div class="swiper-pagination"></div>
+
+	</div>
+
+	<script src="static/js/labjs.min.js"></script>
+	<script>
+		$LAB.script("static/js/jquery-1.11.3.min.js").wait()
+			.script("static/js/swiper.jquery.min.js")
+			.script("static/js/jquery.particleground.min.js")	// 粒子动画1
+			.script("static/js/particle.js")        			// 粒子动画2
+			.script("static/js/showHide.js")   					// 显示隐藏
+			.script("static/js/dropdown.js")   					// 下拉菜单
+			.script("static/js/main.js")
+	</script>
+</body>
+</html>

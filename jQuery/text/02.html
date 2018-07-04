@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jquery与其它库共存的写法</title>
+		<script src="jquery-1.11.3.js"></script>
+	</head>
+	<body>
+		<button id="btn1">点我</button>
+		<script type="text/javascript">
+//			Angular     $
+//			prototype   $
+//			jquery      $
+//			EXT         $
+//			在jquery中    jQuery === $，直接写jQuery
+
+			jQuery.noConflict();   //让jquery交出$的控制权
+
+//			$().ready(function(){
+//				$("#btn1").click(function(){
+//					console.log("HELLO")
+//				})
+//			})
+			
+			jQuery().ready(function(){
+				jQuery("#btn1").click(function(){
+					console.log("HELLO")
+				})
+			})
+			
+			
+			
+//			碰到jquery与其它库共存的问题($符号)
+//			1.引入jquery
+//			2.不再使用"$",使用jQuery来代替$
+//			3.调用jQuery.noConflict(),使jquery交出"$"符号的使用权,优先给其它库使用
+//				调用此方法以后,"$"不再生效,以后使用只能使用jQuery
+
+
+//			UI框架,CSS框架
+//			EasyUI
+//			Bootstrap
+//			MUI
+//			妹子UI
+			
+//			js框架   
+//			操作DOM类
+//			jQuery
+//			prototype
+			
+//			操作数据类
+			angular
+			react
+			vue
+			
+			
+			
+			图表插件
+			基于canvas(2D)
+			chart.js
+			echart.js
+			highchart.js
+			
+			canvas(3D,WebGL)
+			three.js	
+			
+			SVG
+			d3.js
+		</script>
+	</body>
+</html>

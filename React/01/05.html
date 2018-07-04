@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>复合组件</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+        var HeaderComponent = React.createClass({
+            render:function(){
+                return <h1>This is Header</h1>
+            }
+        });
+
+        var SpanComponent = React.createClass({
+            render:function(){
+                return <span> it is my content </span>
+            }
+        })
+
+        //创建一个复合组件，在该组件中显示所创建的
+        //SpanComponent HeaderComponent
+        
+        var TitleComponent = React.createClass({
+            render:function(){
+                return <div>
+                    <HeaderComponent></HeaderComponent>
+                    <SpanComponent></SpanComponent>
+                </div>
+            }
+        })
+        ReactDOM.render(
+            <TitleComponent></TitleComponent>,
+            document.getElementById('example')
+        )
+</script>
+</body>
+</html>

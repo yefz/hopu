@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+        <style>
+        body {
+        font: 14px "Century Gothic", Futura, sans-serif;
+        margin: 20px;
+        }
+        ol, ul {
+        padding-left: 30px;
+        }
+        .board-row:after {
+        clear: both;
+        content: "";
+        display: table;
+        }
+        .status {
+        margin-bottom: 10px;
+        }
+        .square {
+        background: #fff;
+        border: 1px solid #999;
+        float: left;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 34px;
+        height: 34px;
+        margin-right: -1px;
+        margin-top: -1px;
+        padding: 0;
+        text-align: center;
+        width: 34px;
+        }
+        .square:focus {
+        outline: none;
+        }
+        .kbd-navigation .square:focus {
+        background: #ddd;
+        }
+        .game {
+        display: flex;
+        flex-direction: row;
+        }
+        .game-info {
+        margin-left: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+    <script type="text/babel">
+    var Square = React.createClass({
+    handleClick:function(){
+    //希望能调用board组件中修改状态的方法
+    this.props.modifyState(
+    this.props.index);
+    },
+    render() {
+    return (
+    <button
+    onClick={this.handleClick}
+    className="square">
+    {this.props.list[this.props.index]}
+    </button>
+    );
+    }});
+    var Board = React.createClass({
+    getInitialState: function () {
+    return {
+    squares:Array(9).fill(null),
+    xIsNext: true
+    }
+    },
+    componentDidUpdate:function(){
+    console.log('it is a test');
+    //在每一次更新完之后，都要判断输赢
+    var result = calculateWinner(
+    this.state.squares);
+    console.log(result);
+    //result如果为x或者为o，就是赢了；如果是null其实有两种情况：①下盘下完了，null 真正的平局 ②由于初始化的数组全是null，在没有下完棋之前，返回null
+    if(result)
+    {
+    alert(result+'赢了');
+    this.setState({squares:Array(9).fill(null),xIsNext:true});
+    }
+    else
+    {
+    //如果棋盘满了
+    if(this.state.squares.indexOf(null) == -1){
+    alert('平局');
+    this.setState({squares:Array(9).fill(null),xIsNext:true});
+    }
+    }
+    },
+    //设置状态
+    handleSetState:function(index){
+    var nowPlayer =
+    this.state.xIsNext?'X':'O';
+    this.setState(
+    {xIsNext:!this.state.xIsNext})
+    //将当前的玩家下过的棋子 记录在数组
+    var nowList = this.state.squares;
+    nowList[index] = nowPlayer;
+    this.setState(
+    {squares:nowList},
+    function(){
+    console.log(this.state.squares);
+    }
+    );
+    },
+    renderSquare(i) {
+    return <Square
+    list={this.state.squares}
+    modifyState={this.handleSetState}
+    index={i}/>;
+    },
+    render() {
+    return (
+    <div>
+        <div className="status">{status}</div>
+        <div className="board-row">
+            {this.renderSquare(0)}
+            {this.renderSquare(1)}
+            {this.renderSquare(2)}
+        </div>
+        <div className="board-row">
+            {this.renderSquare(3)}
+            {this.renderSquare(4)}
+            {this.renderSquare(5)}
+        </div>
+        <div className="board-row">
+            {this.renderSquare(6)}
+            {this.renderSquare(7)}
+            {this.renderSquare(8)}
+        </div>
+    </div>
+    );}})
+    class Game extends React.Component {
+    render() {
+    return (
+    <div className="game">
+        <div className="game-board">
+            <Board />
+        </div>
+        <div className="game-info">
+            <div>{ status }</div>
+        <ol>{/* TODO */}</ol>
+    </div>
+</div>
+);
+}
+}
+// ========================================
+ReactDOM.render(
+<Game />,
+    document.getElementById('container')
+    );
+    function calculateWinner(squares) {
+    const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] &&
+    squares[a] === squares[b] &&
+    squares[a] === squares[c]) {
+    return squares[a];
+    }
+    }
+    return null;
+    }
+    </script>
+</html>

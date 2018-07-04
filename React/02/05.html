@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>受控表单</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            var MyForm = React.createClass({
+                getInitialState:function(){
+                    return {myValue:'abc'}
+                },
+                handleSubmit:function(event){
+                    //阻止默认的跳转的行为
+                    event.preventDefault();
+                },
+                handleChange:function(){
+                    //测试，指定了value属性的input标签是否会触发onChange事件
+                    console.log('change event is triggered');
+                    console.log(this.refs.myName.value);
+                    //修改状态
+                    this.setState({
+                        myValue:this.refs.myName.value
+                    });
+                },
+                render:function(){
+                    return <form onSubmit={this.handleSubmit} >
+                        <label htmlFor="u_name">用户名</label>
+                        <input type="text" ref='myName' onChange={this.handleChange} value={this.state.myValue} id="u_name"/>
+                        <br/>
+                        <button>提交</button>
+                    </form>
+                }
+            })
+
+            ReactDOM.render(
+                <MyForm></MyForm>,
+                document.getElementById('example')
+            )
+        </script>
+    </body>
+</html>

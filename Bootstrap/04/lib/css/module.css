@@ -1,0 +1,22 @@
+.responsive {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.interval > span:not(:first-child):before,
+.interval > a:not(:first-child):before {
+  content: '/';
+  padding: 0 5px;
+  color: inherit;
+}
+data {
+  padding: 0 2px;
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+data:before {
+  content: '[';
+}
+data:after {
+  content: ']';
+}

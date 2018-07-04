@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件的绑定与解绑</title>
+		<script src="jquery-1.11.3.js"></script>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: #f00;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<button>事件绑定</button>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div id="div"></div>
+		<script type="text/javascript">
+//			鼠标移入button显示div
+//			鼠标移出button隐藏div
+			$().ready(function(){
+//				$("button").mouseover(function(){
+//					$("div").show()
+//				});
+//				$("button").mouseout(function(){
+//					$("div").hide()
+//				});
+//				因为jQuery属于链式操作
+//				$("button").mouseover(function(){
+//					$("div").show()
+//				}).mouseout(function(){
+//					$("div").hide()
+//				});
+				
+				
+				$("button").bind("mouseover mouseout",function(){
+					if($("#div").css("display") == "none"){
+						$("#div").show();
+					}else{
+						$("#div").hide();
+					}
+				})
+				
+//				unbind()事件的解绑
+//				不传递参数的时候默认解绑所有事件
+//				传递参数:
+				
+//				$("button").unbind("mouseout");   //解绑一个事件
+				$("button").unbind("mouseover mouseout"); //解绑多个事件，事件名用空格隔开
+				
+			})
+		</script>
+	</body>
+</html>

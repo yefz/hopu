@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3-4</title>
+<meta charset="utf-8"/>
+<link href="css/style.css" rel="stylesheet">
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/city.js"></script>
+</head>
+
+<body>
+
+<div class="view">
+  <ul>
+    <li>湖北</li>
+    <li>武汉</li>
+    <li>洪山区</li>
+    <span></span>
+  </ul>
+  <button type="reset">重置</button>
+  <button type="submit">确定</button>
+</div>
+<div class="box">
+  <ul>
+    <li class="on">省份</li>
+    <li>城市</li>
+    <li>区县</li>
+  </ul>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<script>
+$().ready(function(){
+
+  // 初始化
+
+  var allCity = city.citylist;
+  var Sh = new Array("北京","天津","上海","重庆","香港","澳门","台湾","国外"); // 省会
+
+  $(function(){
+
+    // 载入省份
+    $.each(allCity,function(i,n){
+      $(".box div:first").show().append('<span>'+n.p+'</span>')
+    });
+
+    // 选项卡隐藏显示
+    $(".view ul").click(function(){
+      $(".box").slideToggle().children("div:first").show();
+      $(this).children("span").toggleClass("on");
+    });
+
+    // 获取选中城市，调用检索
+    $(".box div").on("click","span",function(){
+      var acti = $(this).closest("div").index();
+      toData(acti,$(this).text());
+    });
+
+    $("button[type=reset]").click(function(){
+      $(".view ul li").empty().css("color","#FFF");
+      $(".box").slideDown();
+      course(0);
+    });
+
+    $("button[type=submit]").click(function(){
+      $(".box").slideUp();
+    });
+
+  });
+
+  // 选项卡切换
+  function course(index) {
+    index = index || 0;
+    $(".box ul li").removeClass("on").eq(index).addClass("on");
+    $(".box div").hide().eq(index).show();
+  }
+
+  function toData(index,text){
+
+    var lev = 1;
+
+    switch(index){
+
+      case 1:
+        // 判断是否为省会
+        if(($.inArray(text,Sh))!=-1){
+          lev = 2;
+        };
+        $(".box div:gt(0)").empty();
+        $.each(allCity,function(i,n){
+          if(text==n.p){
+            $.each(n.c,function(a,b){
+              //添加市
+              $(".box div").eq(lev).append('<span>'+b.n+'</span>');
+            });
+          }
+        });
+        $(".view li:gt(0)").empty().css("color","#FFF");
+        $(".view li:eq(0)").text(text).css("color","inherit");
+        course(lev);
+        break;
+
+      case 2:
+        $(".box div:gt(1)").empty().css;
+        $.each(allCity,function(i,n){
+          if($(".view li:first").text()==n.p){
+            $.each(n.c,function(a,b){
+              if(text==b.n){
+                $.each(b.a,function(c,d){
+                  //添加区
+                  $(".box div:eq(2)").append('<span>'+d.s+'</span>')
+                })
+              }
+            });
+          }
+        });
+        $(".view li:eq(1)").text(text).css("color","inherit");
+        course(index);
+        break;
+
+      default:
+        $(".view li:eq(2)").text(text).css("color","inherit");
+        break;
+    }
+  }
+
+  // 拼音排序
+  // function sorting(){
+  //
+  // }
+});
+</script>
+</body>
+</html>

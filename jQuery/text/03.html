@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件的绑定</title>
+		<script src="jquery-1.11.3.js"></script>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: #f00;
+			}
+		</style>
+	</head>
+	<body>
+		<button>事件绑定</button>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div id="div"></div>
+		<script type="text/javascript">
+//			要求   -- 点击button,显示div和隐藏div
+			$().ready(function(){
+//				$("button").click(function(){
+//					if($("#div").css("display") == "none"){
+//						$("#div").css("display","block")
+//					}else{
+//						$("#div").css("display","none")
+//					}
+//				})
+				$("button").bind("click",function(){
+					if($("#div").css("display") == "none"){
+//						$("#div").css("display","block")
+						$("#div").show(3000);
+					}else{
+//						$("#div").css("display","none")
+						$("#div").hide(3000);
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

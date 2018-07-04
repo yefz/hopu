@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>组件传值</title>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+        var MyHeader = React.createClass({
+            render:function(){
+                return <h2>{this.props.myTitle}</h2>
+            }
+        })
+        var MyOrder = React.createClass({
+            render:function(){
+                return <div>
+                    <MyHeader myTitle="个人中心"></MyHeader>
+                        <ul>
+                            <li>设置1</li>
+                            <li>设置2</li>
+                            <li>设置3</li>
+                        </ul>
+                </div>
+            }
+        })
+
+        ReactDOM.render(
+            <MyOrder></MyOrder>,
+            document.getElementById('example')
+        )
+        </script>
+    </body>
+</html>

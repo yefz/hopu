@@ -1,0 +1,23 @@
+{
+  "name": "dhbigdata",
+  "homepage": "https://github.com/wildye/dhbigdata",
+  "authors": [
+    "凝弧 <free.ye@live.cn>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "swiper": "3.4.2",
+    "jquery": "1.11.3",
+    "labjs": "^2.0.3"
+  }
+}
