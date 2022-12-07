@@ -4,7 +4,7 @@
   "description": "",
   "main": "01.js",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "silly-datetime": "^0.1.2"
   },
   "devDependencies": {},
